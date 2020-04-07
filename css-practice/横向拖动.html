@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="./js/dragscroll.js"></script>
+    <style>
+        #tableScroll {
+            width: 400px;
+            height: 400px;
+            border: 1px solid #ddd;
+            overflow: hidden;
+        }
+
+        #tableScroll::-webkit-scrollbar {
+            /* display: none */
+        }
+
+        #tableBox {
+            min-width: 1150px;
+            height: 200px;
+            background: skyblue;
+            -webkit-touch-callout: none;
+            /* iOS Safari */
+            -webkit-user-select: none;
+            /* Chrome/Safari/Opera */
+            -khtml-user-select: none;
+            /* Konqueror */
+            -moz-user-select: none;
+            /* Firefox */
+            -ms-user-select: none;
+            /* Internet Explorer/Edge */
+            user-select: none;
+            /* Non-prefixed version, currently
+                not supported by any browser */
+            overflow: hidden;
+            cursor: grab;
+        }
+
+        #tableBox img {
+            width: auto;
+            height: 100%;
+            /* display: inline-block; */
+        }
+    </style>
+</head>
+
+<body>
+    <div id="tableScroll" style="margin:0 auto;" class="horizontal dragscroll">
+        <div id="tableBox">
+            <img src="./img/1.jpg" alt="">
+            <img src="./img/2.jpg" alt="">
+            <img src="./img/3.jpg" alt="">
+            <img src="./img/4.jpg" alt="">
+        </div>
+    </div>
+</body>
+
+</html>

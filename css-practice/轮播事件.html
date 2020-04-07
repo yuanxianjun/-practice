@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body {
+            width: 900px;
+            height: 900px;
+        }
+
+        #outDiv {
+            width: 500px;
+            height: 200px;
+            overflow: hidden;
+            background: cornflowerblue;
+            overflow-y: scroll;
+        }
+
+        #scrollDiv {
+            width: 100%;
+            height: auto;
+        }
+
+        ul {
+            width: 100%;
+            height: auto;
+        }
+
+        li {
+            height: 60p;
+            line-height: 60px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="outDiv">
+        <div id="scrollDiv">
+            <ul class="ul_one">
+                <li>瑞幸咖啡成功登陆纳斯达克 纳斯达克股票代码 1</li>
+                <li>瑞幸咖啡成功登陆纳斯达克 纳斯达克股票代码2</li>
+                <li>瑞幸咖啡成功登陆纳斯达克 纳斯达克股票代码 3</li>
+                <li>瑞幸咖啡成功登陆纳斯达克 纳斯达克股票代码 4</li>
+                <li>瑞幸咖啡成功登陆纳斯达克 纳斯达克股票代码 5</li>
+                <li>瑞幸咖啡成功登陆纳斯达克 纳斯达克股票代码 6</li>
+            </ul>
+            <ul class="ul_two">
+
+            </ul>
+        </div>
+    </div>
+    <script>
+        var el_out = document.getElementById("outDiv"),
+            scrollDiv = document.getElementById("scrollDiv"),
+            ul_two = document.getElementsByClassName("ul_two")[0],
+            ul_one = document.getElementsByClassName("ul_one")[0], tarnslateY = 0, tarnslateX = 0,
+            topTranslate = 0;
+
+        var reqFrame = null, scrollHight = -2, ulHeight = 0;
+        var tarnslateY2 = 0;
+        // 向上滚动的距离 500 700 
+        ulHeight = ul_one.offsetHeight;
+        console.log(ulHeight, "ulHeight")
+        var bottomTranslate = el_out.offsetHeight - ulHeight;
+        ul_two.innerHTML = ul_one.innerHTML
+
+        // 滚轮事件
+        function scrollFunc(e) {
+            var step = 0;
+            if (e.wheelDelta > 0 && tarnslateY < 0) {
+                step = 40;
+            } else if (e.wheelDelta < 0 && tarnslateY >= bottomTranslate) {
+                step = -40;
+            }
+            tarnslateY = (tarnslateY + step)
+            scrollDiv.style.transform = `translate(0,${tarnslateY}px)`
+        }
+        document.addEventListener('DOMMouseScroll', scrollFunc, false);
+        el_out.onmousewheel = scrollFunc;
+
+        /**
+         * autoMove 无缝滚动函数
+         * speed 轮播速度  direct 轮播方向 transX 左右移动东的位置 transY 上下滚动的位置
+         * 
+        */
+        function autoMove() {
+            // 鼠标移入时拦截_move()
+            // if (this.isHover) return;
+            cancleMove(); //进入move立即先清除动画 防止频繁touchMove导致多动画同时进行
+            reqFrame = requestAnimationFrame(
+                function () {
+                    tarnslateY += scrollHight
+                    tarnslateY2 += scrollHight
+                    // console.log(ulHeight, tarnslateY, tarnslateY2)
+                    if (tarnslateY <= -ulHeight) {
+                        tarnslateY = ulHeight
+                    }
+                    if (tarnslateY2 <= -(ulHeight * 2)) {
+                        tarnslateY2 = 0
+                    }
+                    ul_one.style.transform = `translate(0,${tarnslateY}px)`
+                    ul_two.style.transform = `translate(0,${tarnslateY2}px)`
+                    autoMove();
+                }.bind(this)
+            );
+        }
+        // 自动滚动开启
+        autoMove();
+        function cancleMove() {
+            cancelAnimationFrame(reqFrame || "");
+        }
+        el_out.onmouseenter = cancleMove;
+        el_out.onmouseleave = autoMove;
+    </script>
+</body>
+
+</html>
