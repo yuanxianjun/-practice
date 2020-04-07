@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 创建api
+        let api = {
+            _apiKey: '123abc456def',
+            getUsers: function () { /* ... */ },
+            getUser: function (userId) { /* ... */ },
+            setUser: function (userId, config) { /* ... */ },
+            app: function () { }
+        };
+        // 打印日志的方法
+        function logMethodAsync(timestamp, method) {
+            setTimeout(function () {
+                console.log(`${timestamp} - Logging ${method} request asynchronously.`);
+            }, 0)
+        }
+        // 封装拦截api对象
+        api = new Proxy(api,
+            {
+                get: function (target, key, proxy) {
+                    var value = target[key];
+                    return function (...arguments) {
+
+                        logMethodAsync(new Date(), key);//打印日志
+                        if (key == "app") {
+
+                        }
+                        return Reflect.apply(value, target, arguments);//执行传入的函数
+                    };
+                }
+            });
+        api.getUsers(); //调用api
+        api.app()
+
+
+
+
+
+        const handler = () => console.log('Do something...');
+        document.addEventListener('click', handlerProxy);
+
+
+        // 函数节流 封装拦截函数
+        const createThrottleProxy = (fn, rate) => {
+            let lastClick = Date.now() - rate;//记录上次点击的时间
+            return new Proxy(fn, {
+                apply(target, context, args) {
+                    if (Date.now() - lastClick >= rate) {
+                        fn(args);
+                        lastClick = Date.now();
+                    }
+                }
+            });
+        };
+        const handlerProxy = createThrottleProxy(handler, 3000); //包装函数
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        arr=[2342432]
+        arr[0]=2343;
+
+        $set()
+
+        // vue 的数据绑定
+        let hero = {
+            name: '赵云',
+            hp: 100,
+            sp: 100
+        }
+
+        Object.defineProperty(hero, 'name', {
+            get(){
+
+            },
+            set(val) {
+                console.log(`Set hp to ${val}`);
+                document.body.innerHTML = val;
+                return val;
+            }
+        })
+        console.log(hero.hp = '200');   // --> Set hp to 200
+        //实现更新视图了
+
+
+        // 使用proxy
+        let hero = {
+            name: "赵云",
+            age: 25
+        }
+        let handler = {
+            get: (hero, name, ) => {
+                const heroName = `英雄名是${hero.name}`;
+                return heroName;
+            },
+            set: (hero, name, value) => {
+                console.log(`${hero.name} change to ${value}`);
+                hero[name] = value;
+                document.body.innerHTML = value
+                return true;
+            }
+
+        }
+
+        let heroProxy = new Proxy(hero, handler);
+        console.log(heroProxy.name);
+        heroProxy.name = '黄忠';
+        console.log(heroProxy.name);
+                // --> 英雄名是赵云
+                // --> 赵云 change to 黄忠
+                // --> 英雄名是黄忠
+
+
+
+
+    </script>
+</body>
+
+</html>

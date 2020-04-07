@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let oDiv = {};
+
+        oDiv = new Proxy({}, {
+            get(target, key) {
+                return function (attr = {}, ...children) {
+                    let dom = document.createElement(key);
+                    for (let key of Object.keys(attr)) {
+                        dom.setAttribute(key, attr[key])
+                    }
+                    for (let child of children) {
+                        dom.append(child)
+                    }
+                    console.log(dom)
+                    return dom;
+                }
+            },
+            set(target, key) {
+            },
+        });
+
+        // oDiv.Div({}, 'sss', 'ddd');
+        // oDiv.a({ id: 'myA', class: 'myAclass' }, "www.baidu.com")
+        let htmlDom = oDiv.div({ class: 'myDiv' }, "卧床将简单的大声对",
+            oDiv.p({ id: 'p' }, '第一行内容'),
+            oDiv.p({ id: 'p' }, '第一行内容'),
+            oDiv.p({ id: 'p' }, '第一行内容'),
+            oDiv.p({ id: 'p' }, '第一行内容'),
+            oDiv.p({ id: 'p' }, '第一行内容'),
+            oDiv.p({ id: 'p' }, '第一行内容'),
+            oDiv.p({ id: 'p' }, '第一行内容'),
+        )
+        document.body.appendChild(htmlDom);
+
+
+
+    </script>
+</body>
+
+</html>
