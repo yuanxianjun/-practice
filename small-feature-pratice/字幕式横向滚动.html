@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CSS3_MARQUEE</title>
+
+    <style>
+        .outDiv {
+            width: 500px;
+            margin: 0 auto;
+            background: skyblue;
+        }
+
+        .marquee {
+            width: 500px;
+            overflow: hidden;
+            white-space: nowrap;
+            box-sizing: border-box;
+            animation: marquee 10s linear infinite;
+        }
+
+        ul>li {
+            display: inline;
+            font-size: 40px;
+            margin-left: 10px;
+        }
+
+        .marquee:hover {
+            animation-play-state: paused
+        }
+
+        /* Make it move */
+        @keyframes marquee {
+            0% {
+                text-indent: 500px;
+            }
+
+            100% {
+                text-indent: -50px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="outDiv">
+
+        <ul class="marquee">
+
+            <li>22223333</li>
+
+        </ul>
+    </div>
+</body>
+
+</html>
