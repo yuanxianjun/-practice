@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html">
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <title>CSS3实现卡片翻转效果</title>
+    <style>
+        .main {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 300px;
+            height: 300px;
+            transform: translate(-50%, -50%);
+
+        }
+
+        .box {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 300px;
+            height: 300px;
+            -webkit-perspective: 1500;
+            -moz-perspective: 1500;
+            backface-visibility: hidden;
+            transition: all 1s;
+            border-radius: 10px;
+            cursor: pointer;
+            text-align: center;
+            line-height: 300px;
+        }
+
+        .b1 {
+            /* background: skyblue; */
+            background: url(./img/group.png)no-repeat center center;
+        }
+
+        .b2 {
+            /* background: tomato; */
+            transform: rotateY(-180deg);
+            background: url(./img/group.png)no-repeat center center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <div class="box b1"></div>
+        <div class="box b2"></div>
+    </div>
+    <script>
+
+
+        var b1 = document.querySelector(".b1");
+        var b2 = document.querySelector(".b2");
+        var timer = null;
+        var num = 0;
+        var flag = 1;
+        if (timer) {
+            clearInterval(timer)
+        }
+        timer = setInterval(function () {
+            num++;
+            if (flag == 1) {
+                b1.style.transform = "rotateY(180deg)"
+                b2.style.transform = "rotateY(0)"
+                flag = 2;
+            } else {
+                b1.style.transform = "rotateY(0)"
+                b2.style.transform = "rotateY(-180deg)"
+                flag = 1;
+            }
+            setTimeout(function () {
+                b1.innerText = num
+                b2.innerText = num
+            }, 300)
+
+        }, 3000)
+
+    </script>
+</body>
+
+</html>

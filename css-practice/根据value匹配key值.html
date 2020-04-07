@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //创建一个方法，返回value值对应的key
+        function findKey(obj, value, compare = (a, b) => a === b) {
+            return Object.keys(obj).find(k => compare(obj[k], value))
+        }
+
+        //新建一个对象
+        var nameMap = {
+            'Afghanistan': '阿富汗',
+            'Angola': '安哥拉',
+            'Albania': '阿尔巴尼亚',
+            'Argentina': '阿根廷',
+            'Armenia': '亚美尼亚',
+        }
+
+        var value = findKey(nameMap, '阿富汗');  //返回结果为：Afghanistan
+
+        console.log(value)
+    </script>
+</body>
+
+</html>

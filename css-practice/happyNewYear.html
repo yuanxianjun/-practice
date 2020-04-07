@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: darkred;
+        }
+
+        figure {
+            font-size: 60px;
+            display: grid;
+            grid-template-columns: repeat(8, 1em);
+            grid-template-rows: repeat(3, 1em);
+            color: whitesmoke;
+        }
+
+        .two {
+            background-color: currentColor;
+            filter: drop-shadow(4em 0);
+        }
+
+        .two-1 {
+            grid-area: 1/1;
+            border-radius: 100% 0 0 0;
+        }
+
+        .two-2 {
+            grid-area: 2/2;
+            border-radius: 0 0 100% 0;
+        }
+
+        .two-3 {
+            grid-area: 3/1;
+            border-radius: 0 0 0 100%;
+        }
+
+        .two-4 {
+            grid-area: 3/2;
+            border-radius: 0 0 0 100%;
+        }
+
+        .zero {
+            width: 0;
+            height: 0;
+            border: 1em solid;
+            border-color: currentColor transparent;
+            border-radius: 50%;
+            animation: round 4s linear infinite;
+        }
+
+        .zero-1 {
+            grid-area: 2/3/4/5;
+        }
+
+        .zero-2 {
+            grid-area: 2/7/4/9;
+        }
+
+        @keyframes round {
+            to {
+                transform: rotate(calc(-1turn));
+            }
+        }
+
+        .text {
+            font-size: 0.66em;
+            text-transform: uppercase;
+            font-family: cursive;
+            font-weight: bold;
+            line-height: 1.5em;
+            position: relative;
+            left: 0.25em;
+            mix-blend-mode: difference;
+        }
+
+        .happy {
+            grid-area: 1/2;
+        }
+
+        .new {
+            grid-area: 2/4;
+        }
+
+        .year {
+            grid-area: 1/6;
+        }
+
+        .text20 {
+            grid-area: 2/1;
+        }
+
+        .textYear {
+            grid-area: 2/7;
+        }
+    </style>
+</head>
+
+<body>
+    <figure>
+        <span class="two two-1"></span>
+        <span class="two two-2"></span>
+        <span class="two two-3"></span>
+        <span class="two two-4"></span>
+        <span class="zero zero-1"></span>
+        <span class="zero zero-2"></span>
+        <span class="text happy">happy</span>
+        <span class="text new">new</span>
+        <span class="text year">year</span>
+        <span class="text text20">2020</span>
+        <span class="text textYear">年</span>
+    </figure>
+</body>
+
+</html>
