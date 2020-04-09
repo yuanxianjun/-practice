@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        var data = [{ "userId": "40c3a873c4784f8089be64182bf03795", "name": "刘汉兵", "postName": "值班领导", "date": null, "postId": null }, { "userId": "8aa8b16f1b0e46ee9830594f6a0cb94d", "name": "张皓军", "postName": "政工助理", "date": null, "postId": null }, { "userId": "40c3a873c4784f8089be64182bf03795", "name": "刘汉兵", "postName": "指挥长", "date": null, "postId": null }, { "userId": "2a8a828d9c1c4a45a724b5ec57151851", "name": "陶学德", "postName": "通信助理", "date": null, "postId": null }, { "userId": "f7b81f52e05340bab78c8ecbe3153b42", "name": "吴竹青", "postName": "保障助理", "date": null, "postId": null }, { "userId": "486f299c68c2405288254e47d0981b31", "name": "刘劲", "postName": "作战值班", "date": null, "postId": null }, { "userId": "b9b09fc810124cd4b7473d7e650fee19", "name": "唐正勇", "postName": "行政值班", "date": null, "postId": null }, { "userId": "2a8a828d9c1c4a45a724b5ec57151851", "name": "陶学德", "postName": "宣传助理", "date": null, "postId": null }, { "userId": "", "name": "", "postName": "带班首长", "date": null, "postId": null }, { "userId": "", "name": "", "postName": "作战助理", "date": null, "postId": null }]
+        var order = ["带班首长", "值班领导", "指挥长", "作战值班", "行政值班", "作战助理", "通信助理", "政工助理", "保障助理", "宣传助理"];
+        data.sort(function (a, b) {
+            console.log(a, b)
+            // 如果字段可能不一样的时候，需要再深度对比一下
+            // order.find(a=>{
+            //     a.indexOf(a.postName)
+            // })
+            return order.indexOf(a.postName) - order.indexOf(b.postName)
+        })
+        console.log(data, "查看data")
+    </script>
+</body>
+
+</html>

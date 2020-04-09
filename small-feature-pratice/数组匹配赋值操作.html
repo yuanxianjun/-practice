@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var arr1 = [{ "id": 33 }, { "id": 42 }, { "id": 21 }, { "id": 2 }, { "id": 777 }];
+        var arr2 = [{ "id": 3, "value": "a" }, { "id": 2, "value": "b" }, { "id": 42, "value": "c" }];
+        var obj1 = {
+            a: 1,
+            b: 2,
+            c: 5
+        }
+        function replace(arr1, arr2) {
+            var temp;
+            arr1.map(function (v1) {
+                (temp = arr2.find(function (v2) {
+                    return v1.id == v2.id;
+                })) && (v1.value = temp.value)
+                return v1;
+            })
+            return arr1;
+        }
+
+        console.log(replace(arr1, arr2));
+        // or replace(arr1, arr2) console.log(arr1);
+
+        // 数组中 匹配对象的值
+        function arrD(arr1, obj1) {
+            for(let i =0;i<arr1.length;i++){
+                if(arr[i].name="在位人员"){
+                    arr[i].value = obj1['reginCount']
+                    i++;
+                    break;
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>
